@@ -1,12 +1,13 @@
 import Phaser from 'phaser'
 
 import HelloWorldScene from './HelloWorldScene'
+import MainMenuScene from './MainMenuScene'
 
 const config: Phaser.Types.Core.GameConfig = {
   type: Phaser.AUTO,
   parent: 'app',
-  width: 400,
-  height: 300,
+  width: 700,
+  height: 400,
   zoom: 2,
   pixelArt: true,
   scale: {
@@ -17,10 +18,10 @@ const config: Phaser.Types.Core.GameConfig = {
     default: 'arcade',
     arcade: {
       gravity: { y: 0 },
-      debug: true,
+      //debug: true,
     },
   },
-  scene: [HelloWorldScene],
+  scene: [MainMenuScene, HelloWorldScene],
 }
 
 export default new Phaser.Game(config)

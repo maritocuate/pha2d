@@ -3,7 +3,6 @@ import { Scene } from 'phaser'
 export default class HelloWorldScene extends Scene {
   private player?: Phaser.Physics.Arcade.Sprite
   private cursors?: Phaser.Types.Input.Keyboard.CursorKeys
-  //private map?: Phaser.Tilemaps.Tilemap
 
   constructor() {
     super('hello-world')
@@ -32,12 +31,6 @@ export default class HelloWorldScene extends Scene {
       }),
       frameRate: 10,
       repeat: -1,
-    })
-
-    this.anims.create({
-      key: 'turn',
-      frames: [{ key: 'dude', frame: 19 }],
-      frameRate: 20,
     })
 
     this.anims.create({
