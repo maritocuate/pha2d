@@ -7,6 +7,7 @@ const config: Phaser.Types.Core.GameConfig = {
   parent: 'app',
   width: 400,
   height: 300,
+  zoom: 2,
   pixelArt: true,
   scale: {
     mode: Phaser.Scale.FIT,
@@ -15,6 +16,7 @@ const config: Phaser.Types.Core.GameConfig = {
   physics: {
     default: 'arcade',
     arcade: {
+      gravity: { y: 0 },
       debug: true,
     },
   },
