@@ -4,6 +4,8 @@ export default class HelloWorldScene extends Scene {
   private player?: Phaser.Physics.Arcade.Sprite
   private cursors?: Phaser.Types.Input.Keyboard.CursorKeys
   private obstacles?: Phaser.Physics.Arcade.StaticGroup
+  private infoText?: Phaser.GameObjects.Text
+  private infoVisible: boolean = false
 
   constructor() {
     super('hello-world')
@@ -17,12 +19,23 @@ export default class HelloWorldScene extends Scene {
       frameHeight: 64,
     })
 
-    this.load.image('statue', 'assets/statue.png')
-    this.load.image('cuptree', 'assets/cuptree.png')
+    this.load.image('misc', 'assets/moron-images.png')
   }
   create() {
     // create the map
     this.add.image(0, 0, 'map').setOrigin(0)
+
+    // Crear cartel de información
+    this.infoText = this.add
+      .text(200, 50, '¡Cuidado con los obstáculos!', {
+        fontSize: '24px',
+        backgroundColor: '#000000',
+        padding: {
+          x: 10,
+          y: 5,
+        },
+      })
+      .setOrigin(0.5)
 
     // create obstacles
     this.obstacles = this.physics.add.staticGroup()
@@ -84,8 +97,7 @@ export default class HelloWorldScene extends Scene {
     // Colisiones entre el jugador y los obstáculos
     this.physics.add.collider(this.player, this.obstacles)
 
-    this.add.image(306, 258, 'statue').setOrigin(0)
-    this.add.image(358, 413, 'cuptree').setOrigin(0)
+    this.add.image(0, 0, 'misc').setOrigin(0)
 
     // Configuración de la cámara para seguir al jugador
     this.cameras.main.setBounds(0, 0, 500, 600)
