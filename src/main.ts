@@ -7,7 +7,7 @@ const config: Phaser.Types.Core.GameConfig = {
   type: Phaser.AUTO,
   parent: 'app',
   width: 600,
-  height: 500,
+  height: 530,
   zoom: 5,
   pixelArt: true,
   scale: {
