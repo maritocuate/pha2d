@@ -1,11 +1,10 @@
 import { Scene } from 'phaser'
+import { createObstacles } from './Obstacles'
 
-export default class HelloWorldScene extends Scene {
+export default class GameScene extends Scene {
   private player?: Phaser.Physics.Arcade.Sprite
   private cursors?: Phaser.Types.Input.Keyboard.CursorKeys
   private obstacles?: Phaser.Physics.Arcade.StaticGroup
-  private infoText?: Phaser.GameObjects.Text
-  private infoVisible: boolean = false
 
   constructor() {
     super('hello-world')
@@ -25,34 +24,10 @@ export default class HelloWorldScene extends Scene {
     // create the map
     this.add.image(0, 0, 'map').setOrigin(0)
 
-    // Crear cartel de información
-    this.infoText = this.add
-      .text(200, 50, '¡Cuidado con los obstáculos!', {
-        fontSize: '24px',
-        backgroundColor: '#000000',
-        padding: {
-          x: 10,
-          y: 5,
-        },
-      })
-      .setOrigin(0.5)
-
     // create obstacles
-    this.obstacles = this.physics.add.staticGroup()
-    // statue
-    const statue: Phaser.Physics.Arcade.StaticBody = this.obstacles.create(
-      340,
-      315,
-      'obstacle',
-      undefined,
-      false
-    )
-    statue.setSize(60, 40)
+    this.obstacles = createObstacles(this, this.physics)
 
-    const pound = this.obstacles.create(510, 510, 'obstacle', undefined, false)
-    pound.setSize(225, 150)
-
-    this.player = this.physics.add.sprite(400, 400, 'dude')
+    this.player = this.physics.add.sprite(290, 410, 'dude')
     this.player.setBounce(0.2)
     this.player.setCollideWorldBounds(true)
 
