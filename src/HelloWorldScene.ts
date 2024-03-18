@@ -18,13 +18,15 @@ export default class HelloWorldScene extends Scene {
     })
 
     this.load.image('statue', 'assets/statue.png')
+    this.load.image('cuptree', 'assets/cuptree.png')
   }
   create() {
     // create the map
     this.add.image(0, 0, 'map').setOrigin(0)
 
-    // Crear los obstáculos
+    // create obstacles
     this.obstacles = this.physics.add.staticGroup()
+    // statue
     const statue: Phaser.Physics.Arcade.StaticBody = this.obstacles.create(
       340,
       315,
@@ -33,6 +35,9 @@ export default class HelloWorldScene extends Scene {
       false
     )
     statue.setSize(60, 40)
+
+    const pound = this.obstacles.create(510, 510, 'obstacle', undefined, false)
+    pound.setSize(225, 150)
 
     this.player = this.physics.add.sprite(400, 400, 'dude')
     this.player.setBounce(0.2)
@@ -80,6 +85,7 @@ export default class HelloWorldScene extends Scene {
     this.physics.add.collider(this.player, this.obstacles)
 
     this.add.image(306, 258, 'statue').setOrigin(0)
+    this.add.image(358, 413, 'cuptree').setOrigin(0)
 
     // Configuración de la cámara para seguir al jugador
     this.cameras.main.setBounds(0, 0, 500, 600)
