@@ -3,16 +3,16 @@ import Phaser from 'phaser'
 import GameScene from './GameScene'
 import MainMenuScene from './MainMenuScene'
 
-const config: Phaser.Types.Core.GameConfig = {
+const config = {
   type: Phaser.AUTO,
   parent: 'app',
-  width: 600,
-  height: 530,
   zoom: 5,
   pixelArt: true,
   scale: {
-    mode: Phaser.Scale.FIT,
+    mode: Phaser.Scale.ENVELOP,
     autoCenter: Phaser.Scale.CENTER_BOTH,
+    width: 600,
+    height: 530,
   },
   physics: {
     default: 'arcade',

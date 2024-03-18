@@ -1,16 +1,6 @@
 import { Physics } from 'phaser'
 
-export function createObstacles(
-  scene: Phaser.Scene,
-  physics: Physics.Arcade.ArcadePhysics
-) {
-  /* const obstacles = physics.add.staticGroup()
-
-  const obstacle1 = obstacles.create(200, 200, 'obstacle')
-  obstacle1.setScale(0.5)
-  obstacle1.setAngle(45)
-  obstacle1.refreshBody() */
-
+export function createObstacles(physics: Physics.Arcade.ArcadePhysics) {
   const obstacles = physics.add.staticGroup()
 
   // statue

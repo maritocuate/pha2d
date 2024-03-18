@@ -25,7 +25,7 @@ export default class GameScene extends Scene {
     this.add.image(0, 0, 'map').setOrigin(0)
 
     // create obstacles
-    this.obstacles = createObstacles(this, this.physics)
+    this.obstacles = createObstacles(this.physics)
 
     this.player = this.physics.add.sprite(290, 410, 'dude')
     this.player.setBounce(0.2)
@@ -75,7 +75,7 @@ export default class GameScene extends Scene {
     this.add.image(0, 0, 'misc').setOrigin(0)
 
     // Configuración de la cámara para seguir al jugador
-    this.cameras.main.setBounds(0, 0, 500, 600)
+    this.cameras.main.setBounds(0, -100, 0, 800)
     this.cameras.main.startFollow(this.player, true, 0.08, 0.08)
   }
   update() {
