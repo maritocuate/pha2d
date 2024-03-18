@@ -1,5 +1,6 @@
 import { Scene } from 'phaser'
 import { createObstacles } from './Obstacles'
+import { createPlayer } from './Player'
 
 export default class GameScene extends Scene {
   private player?: Phaser.Physics.Arcade.Sprite
@@ -27,45 +28,8 @@ export default class GameScene extends Scene {
     // create obstacles
     this.obstacles = createObstacles(this.physics)
 
-    this.player = this.physics.add.sprite(290, 410, 'dude')
-    this.player.setBounce(0.2)
-    this.player.setCollideWorldBounds(true)
-
-    this.anims.create({
-      key: 'left',
-      frames: this.anims.generateFrameNumbers('dude', {
-        frames: [9, 10, 11, 12, 13, 14, 15, 16],
-      }),
-      frameRate: 10,
-      repeat: -1,
-    })
-
-    this.anims.create({
-      key: 'right',
-      frames: this.anims.generateFrameNumbers('dude', {
-        start: 0,
-        end: 7,
-      }),
-      frameRate: 10,
-      repeat: -1,
-    })
-
-    this.anims.create({
-      key: 'up',
-      frames: this.anims.generateFrameNumbers('dude', {
-        frames: [28, 29, 30, 31, 32, 33, 34, 35],
-      }),
-      frameRate: 10,
-      repeat: -1,
-    })
-    this.anims.create({
-      key: 'down',
-      frames: this.anims.generateFrameNumbers('dude', {
-        frames: [19, 20, 21, 22, 23, 24, 25, 26],
-      }),
-      frameRate: 10,
-      repeat: -1,
-    })
+    // create the player
+    this.player = createPlayer(this)
 
     this.cursors = this.input.keyboard.createCursorKeys()
 
