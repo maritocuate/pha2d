@@ -9,7 +9,7 @@ export default class HelloWorldScene extends Scene {
   }
 
   preload() {
-    this.load.image('map', 'assets/egipt.png')
+    this.load.image('map', 'assets/moron.png')
 
     this.load.spritesheet('dude', 'assets/marito.png', {
       frameWidth: 64,
@@ -63,7 +63,7 @@ export default class HelloWorldScene extends Scene {
     this.cursors = this.input.keyboard.createCursorKeys()
 
     // Configuración de la cámara para seguir al jugador
-    this.cameras.main.setBounds(0, 0, 2000, 1500)
+    this.cameras.main.setBounds(0, 0, 500, 600)
     this.cameras.main.startFollow(this.player, true, 0.08, 0.08)
   }
   update() {

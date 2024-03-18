@@ -6,9 +6,9 @@ import MainMenuScene from './MainMenuScene'
 const config: Phaser.Types.Core.GameConfig = {
   type: Phaser.AUTO,
   parent: 'app',
-  width: 700,
-  height: 400,
-  zoom: 2,
+  width: 600,
+  height: 500,
+  zoom: 5,
   pixelArt: true,
   scale: {
     mode: Phaser.Scale.FIT,
@@ -21,7 +21,7 @@ const config: Phaser.Types.Core.GameConfig = {
       //debug: true,
     },
   },
-  scene: [MainMenuScene, HelloWorldScene],
+  scene: [HelloWorldScene, MainMenuScene],
 }
 
 export default new Phaser.Game(config)
