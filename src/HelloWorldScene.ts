@@ -3,6 +3,7 @@ import { Scene } from 'phaser'
 export default class HelloWorldScene extends Scene {
   private player?: Phaser.Physics.Arcade.Sprite
   private cursors?: Phaser.Types.Input.Keyboard.CursorKeys
+  private obstacles?: Phaser.Physics.Arcade.StaticGroup
 
   constructor() {
     super('hello-world')
@@ -15,10 +16,23 @@ export default class HelloWorldScene extends Scene {
       frameWidth: 64,
       frameHeight: 64,
     })
+
+    this.load.image('statue', 'assets/statue.png')
   }
   create() {
     // create the map
     this.add.image(0, 0, 'map').setOrigin(0)
+
+    // Crear los obstáculos
+    this.obstacles = this.physics.add.staticGroup()
+    const statue: Phaser.Physics.Arcade.StaticBody = this.obstacles.create(
+      340,
+      315,
+      'obstacle',
+      undefined,
+      false
+    )
+    statue.setSize(60, 40)
 
     this.player = this.physics.add.sprite(400, 400, 'dude')
     this.player.setBounce(0.2)
@@ -61,6 +75,11 @@ export default class HelloWorldScene extends Scene {
     })
 
     this.cursors = this.input.keyboard.createCursorKeys()
+
+    // Colisiones entre el jugador y los obstáculos
+    this.physics.add.collider(this.player, this.obstacles)
+
+    this.add.image(306, 258, 'statue').setOrigin(0)
 
     // Configuración de la cámara para seguir al jugador
     this.cameras.main.setBounds(0, 0, 500, 600)
