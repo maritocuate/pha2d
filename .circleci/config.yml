@@ -6,8 +6,14 @@ jobs:
       - image: cimg/base:stable
     steps:
       - run: echo hola
+  despidete:
+    docker:
+      - image: cimg/base:stable
+    steps:
+      - run: echo adios
 
 workflows:
-  hello:
+  wf1:
     jobs:
       - saluda
+      - despidete
