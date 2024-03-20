@@ -17,3 +17,10 @@ workflows:
     jobs:
       - saluda
       - despidete
+  wf2:
+    jobs:
+      - saluda
+      - approval:
+        type: approval
+        requires: saluda
+      - despidete
