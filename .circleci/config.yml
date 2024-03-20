@@ -23,7 +23,7 @@ workflows:
   workflow2:
     jobs:
       - saluda
-      - despidete:
+      - 'despidete':
         requires:
           - saluda
 
@@ -31,12 +31,9 @@ workflows:
     triggers:
       - schedule:
         cron: '48 10 * * *'
-        filters:
-          branches:
-            only: master
 
     jobs:
       - saluda
-      - despidete:
+      - 'despidete':
         requires:
           - saluda
