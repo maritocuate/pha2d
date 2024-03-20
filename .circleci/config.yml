@@ -22,7 +22,8 @@ workflows:
       - saluda
       - approval:
         type: approval
-        requires: saluda
+        requires:
+          - saluda
       - despidete:
         requires:
           - approval
