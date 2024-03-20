@@ -17,3 +17,9 @@ workflows:
     jobs:
       - saluda
       - despidete
+  wf2:
+    jobs:
+      - saluda
+      - despidete:
+        requires:
+          - saluda
