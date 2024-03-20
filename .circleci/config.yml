@@ -13,19 +13,21 @@ jobs:
     steps:
       - run: echo pre adios
       - run: echo adios
+  approval:
+    type: approval
 
 workflows:
-  wf1:
+  workflow1:
     jobs:
       - saluda
       - despidete
-  wf2:
+  workflow2:
     jobs:
       - saluda
       - despidete:
         requires:
           - saluda
-  wf3:
+  workflow3:
     jobs:
       - saluda
       - approval:
