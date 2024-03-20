@@ -24,14 +24,16 @@ workflows:
     jobs:
       - saluda
       - despidete:
-          requires: saluda
+          requires:
+            - saluda
 
   workflow3:
     jobs:
       - saluda
-      - approval:
-          requires:
-            - saluda
+      - hold:
+        type: approval
+        requires:
+          - saluda
       - despidete:
           requires:
-            - approval
+            - hold
