@@ -1,11 +1,16 @@
 version: 2.1
 
+parameters:
+  nombre:
+    type: string
+    default: 'MQ'
+
 jobs:
   saluda:
     docker:
       - image: cimg/base:stable
     steps:
-      - run: echo hola
+      - run: echo hola << pipeline.parameters.nombre >>
 
   despidete:
     docker:
