@@ -27,14 +27,24 @@ workflows:
           requires:
             - saluda
 
+  workflow3:
+    jobs:
+      - saluda
+      - approval:
+          type: approval
+          requires:
+            - saluda
+      - despidete:
+          requires:
+            - approval
+
   nightly:
     triggers:
       - schedule:
-          cron: "48 10 * * *"
+          cron: '48 10 * * *'
           filters:
             branches:
-              only:
-                master
+              only: master
 
     jobs:
       - saluda
