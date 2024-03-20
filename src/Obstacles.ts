@@ -41,13 +41,13 @@ export function createObstacles(physics: Physics.Arcade.ArcadePhysics) {
   rightObstacle.setSize(50, 500)
   // middle
   const middleObstacle = obstacles.create(
-    190,
+    195,
     415,
     'obstacle',
     undefined,
     false
   )
-  middleObstacle.setSize(50, 10)
+  middleObstacle.setSize(70, 10)
 
   return obstacles
 }
