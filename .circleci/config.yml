@@ -24,8 +24,8 @@ workflows:
     jobs:
       - saluda
       - despidete:
-        requires:
-          - saluda
+          requires:
+            - saluda
 
   nightly:
     triggers:
@@ -35,5 +35,5 @@ workflows:
     jobs:
       - saluda
       - despidete:
-        requires:
-          - saluda
+          requires:
+            - saluda
