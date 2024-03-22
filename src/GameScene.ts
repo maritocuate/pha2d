@@ -8,7 +8,7 @@ export default class GameScene extends Scene {
   private obstacles?: Phaser.Physics.Arcade.StaticGroup
 
   constructor() {
-    super('hello-world')
+    super({ key: 'GameScene' })
   }
 
   preload() {
@@ -41,6 +41,12 @@ export default class GameScene extends Scene {
     // Configuración de la cámara para seguir al jugador
     this.cameras.main.setBounds(0, -100, 0, 800)
     this.cameras.main.startFollow(this.player, true, 0.08, 0.08)
+
+    // Keyboard events
+    this.input.keyboard.on('keydown-P', () => {
+      this.scene.pause()
+      this.scene.launch('PauseScene')
+    })
   }
   update() {
     if (!this.cursors || !this.player) {
