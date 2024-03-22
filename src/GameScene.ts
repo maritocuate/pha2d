@@ -47,6 +47,8 @@ export default class GameScene extends Scene {
       this.scene.pause()
       this.scene.launch('PauseScene')
     })
+
+    //this.scene.launch('PopupScene', { popupText: 'test text' })
   }
   update() {
     if (!this.cursors || !this.player) {

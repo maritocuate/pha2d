@@ -1,8 +1,14 @@
 import { Scene } from 'phaser'
 
 export default class PopupScene extends Scene {
+  private popupText = ''
+
   constructor() {
     super({ key: 'PopupScene', active: false })
+  }
+
+  init(data: any) {
+    this.popupText = data.popupText
   }
 
   preload() {
@@ -24,12 +30,17 @@ export default class PopupScene extends Scene {
       .image(this.cameras.main.width / 2, this.cameras.main.height / 2, 'popup')
       .setOrigin(0.5)
 
-    const popupText = this.add.text(this.cameras.main.width / 2, 255, 'Hi!', {
-      fontFamily: 'Courier',
-      fontSize: '11px',
-      fontStyle: 'bold',
-      color: '#000000',
-    })
+    const popupText = this.add.text(
+      this.cameras.main.width / 2,
+      255,
+      this.popupText,
+      {
+        fontFamily: 'Courier',
+        fontSize: '11px',
+        fontStyle: 'bold',
+        color: '#000000',
+      }
+    )
     popupText.setOrigin(0.5)
 
     this.input.keyboard.on('keydown-ENTER', this.resumeGame, this)
