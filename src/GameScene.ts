@@ -1,11 +1,14 @@
 import { Scene } from 'phaser'
 import { createObstacles } from './Obstacles'
 import { createPlayer } from './Player'
+import { createTriggers } from './Triggers'
 
 export default class GameScene extends Scene {
   private player?: Phaser.Physics.Arcade.Sprite
   private cursors?: Phaser.Types.Input.Keyboard.CursorKeys
   private obstacles?: Phaser.Physics.Arcade.StaticGroup
+  private triggers?: Phaser.Physics.Arcade.StaticGroup
+  private activeTriggers: Set<Phaser.GameObjects.GameObject> = new Set()
 
   constructor() {
     super({ key: 'GameScene' })
@@ -28,6 +31,9 @@ export default class GameScene extends Scene {
     // create obstacles
     this.obstacles = createObstacles(this.physics)
 
+    // create triggers
+    this.triggers = createTriggers(this.physics)
+
     // create the player
     this.player = createPlayer(this)
 
@@ -35,6 +41,22 @@ export default class GameScene extends Scene {
 
     // Colisiones entre el jugador y los obstáculos
     this.physics.add.collider(this.player, this.obstacles)
+
+    // Triggers
+    this.physics.add.overlap(
+      this.player,
+      this.triggers,
+      this.handleTriggerCollision,
+      undefined,
+      this
+    )
+    this.physics.add.collider(
+      this.player,
+      this.triggers,
+      this.handleTriggerExit,
+      undefined,
+      this
+    )
 
     this.add.image(0, 0, 'misc').setOrigin(0)
 
@@ -47,8 +69,6 @@ export default class GameScene extends Scene {
       this.scene.pause()
       this.scene.launch('PauseScene')
     })
-
-    //this.scene.launch('PopupScene', { popupText: 'test text' })
   }
   update() {
     if (!this.cursors || !this.player) {
@@ -83,6 +103,34 @@ export default class GameScene extends Scene {
       this.player.anims.play('down', true)
     } else {
       this.player.anims.stop()
+    }
+  }
+
+  private handleTriggerCollision(
+    player: Phaser.GameObjects.GameObject,
+    trigger: any
+  ) {
+    const triggerText = trigger.text
+    this.scene.pause()
+    this.scene.launch('PopupScene', { popupText: triggerText })
+
+    this.activeTriggers.add(trigger)
+    trigger.setActive(false)
+  }
+
+  private handleTriggerExit(
+    player: Phaser.GameObjects.GameObject,
+    trigger: any
+  ) {
+    // Eliminar el trigger de la lista de triggers activos
+    this.activeTriggers.delete(trigger)
+
+    // Verificar si no hay más triggers activos
+    if (this.activeTriggers.size === 0) {
+      // Activar nuevamente todos los triggers
+      this.triggers?.getChildren().forEach(trigger => {
+        trigger.setActive(true)
+      })
     }
   }
 }
