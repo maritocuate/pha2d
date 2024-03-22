@@ -3,6 +3,7 @@ import Phaser from 'phaser'
 import GameScene from './GameScene'
 import MainMenuScene from './MainMenuScene'
 import PauseScene from './PauseScene'
+import PopupScene from './PopupScene'
 
 const config = {
   type: Phaser.AUTO,
@@ -22,7 +23,7 @@ const config = {
       //debug: true,
     },
   },
-  scene: [GameScene, MainMenuScene, PauseScene],
+  scene: [GameScene, MainMenuScene, PauseScene, PopupScene],
 }
 
 export default new Phaser.Game(config)
