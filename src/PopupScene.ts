@@ -2,7 +2,7 @@ import { Scene } from 'phaser'
 
 export default class PopupScene extends Scene {
   constructor() {
-    super({ key: 'PopupScene', active: true })
+    super({ key: 'PopupScene', active: false })
   }
 
   preload() {
