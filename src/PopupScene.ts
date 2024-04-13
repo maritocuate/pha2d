@@ -36,8 +36,9 @@ export default class PopupScene extends Scene {
       this.popupText,
       {
         fontFamily: 'Courier',
-        fontSize: '11px',
+        fontSize: '12px',
         fontStyle: 'bold',
+        align: 'center',
         color: '#000000',
       }
     )

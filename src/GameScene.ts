@@ -9,6 +9,7 @@ export default class GameScene extends Scene {
   private obstacles?: Phaser.Physics.Arcade.StaticGroup
   private triggers?: Phaser.Physics.Arcade.StaticGroup
   private activeTriggers: Set<Phaser.GameObjects.GameObject> = new Set()
+  private currentTrigger?: string
 
   constructor() {
     super({ key: 'GameScene' })
@@ -43,13 +44,6 @@ export default class GameScene extends Scene {
     this.physics.add.collider(this.player, this.obstacles)
 
     // Triggers
-    this.physics.add.overlap(
-      this.player,
-      this.triggers,
-      this.handleTriggerCollision,
-      undefined,
-      this
-    )
     this.physics.add.collider(
       this.player,
       this.triggers,
@@ -106,31 +100,13 @@ export default class GameScene extends Scene {
     }
   }
 
-  private handleTriggerCollision(
-    player: Phaser.GameObjects.GameObject,
-    trigger: any
-  ) {
-    const triggerText = trigger.text
-    this.scene.pause()
-    this.scene.launch('PopupScene', { popupText: triggerText })
-
-    this.activeTriggers.add(trigger)
-    trigger.setActive(false)
-  }
-
   private handleTriggerExit(
     player: Phaser.GameObjects.GameObject,
     trigger: any
   ) {
-    // Eliminar el trigger de la lista de triggers activos
-    this.activeTriggers.delete(trigger)
+    player.body.position.y = trigger.y + trigger.height / 3
 
-    // Verificar si no hay más triggers activos
-    if (this.activeTriggers.size === 0) {
-      // Activar nuevamente todos los triggers
-      this.triggers?.getChildren().forEach(trigger => {
-        trigger.setActive(true)
-      })
-    }
+    this.scene.pause()
+    this.scene.launch('PopupScene', { popupText: trigger.text })
   }
 }
