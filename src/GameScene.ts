@@ -104,7 +104,7 @@ export default class GameScene extends Scene {
     player: Phaser.GameObjects.GameObject,
     trigger: any
   ) {
-    player.body.position.y = trigger.y + trigger.height / 3
+    player.body.position.y = trigger.y + 4
 
     this.scene.pause()
     this.scene.launch('PopupScene', { popupText: trigger.text })
