@@ -3,6 +3,16 @@ import { Physics } from 'phaser'
 export function createObstacles(physics: Physics.Arcade.ArcadePhysics) {
   const obstacles = physics.add.staticGroup()
 
+  // garden1
+  const garden1: Phaser.Physics.Arcade.StaticBody = obstacles.create(
+    183,
+    280,
+    'obstacle',
+    undefined,
+    false
+  )
+  garden1.setSize(75, 50)
+
   // statue
   const statue: Phaser.Physics.Arcade.StaticBody = obstacles.create(
     340,
