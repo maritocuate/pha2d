@@ -8,8 +8,6 @@ export default class GameScene extends Scene {
   private cursors?: Phaser.Types.Input.Keyboard.CursorKeys
   private obstacles?: Phaser.Physics.Arcade.StaticGroup
   private triggers?: Phaser.Physics.Arcade.StaticGroup
-  private activeTriggers: Set<Phaser.GameObjects.GameObject> = new Set()
-  private currentTrigger?: string
 
   constructor() {
     super({ key: 'GameScene' })
