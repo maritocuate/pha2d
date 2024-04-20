@@ -13,6 +13,26 @@ export function createObstacles(physics: Physics.Arcade.ArcadePhysics) {
   )
   garden1.setSize(75, 50)
 
+  // garden2
+  const garden2: Phaser.Physics.Arcade.StaticBody = obstacles.create(
+    250,
+    220,
+    'obstacle',
+    undefined,
+    false
+  )
+  garden2.setSize(20, 5)
+
+  // garden3
+  const garden3: Phaser.Physics.Arcade.StaticBody = obstacles.create(
+    380,
+    200,
+    'obstacle',
+    undefined,
+    false
+  )
+  garden3.setSize(115, 20)
+
   // statue
   const statue: Phaser.Physics.Arcade.StaticBody = obstacles.create(
     340,
@@ -38,7 +58,7 @@ export function createObstacles(physics: Physics.Arcade.ArcadePhysics) {
   const leftObstacle = obstacles.create(35, 340, 'obstacle', undefined, false)
   leftObstacle.setSize(50, 500)
   // top
-  const topObstacle = obstacles.create(130, 100, 'obstacle', undefined, false)
+  const topObstacle = obstacles.create(125, 100, 'obstacle', undefined, false)
   topObstacle.setSize(400, 50)
   // store
   const storeObstacle = obstacles.create(330, 30, 'obstacle', undefined, false)
