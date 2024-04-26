@@ -22,6 +22,7 @@ export default class GameScene extends Scene {
     })
 
     this.load.image('misc', 'assets/moron-images.png')
+    this.load.image('life', 'assets/life.png')
   }
   create() {
     // create the map
@@ -53,8 +54,12 @@ export default class GameScene extends Scene {
     this.add.image(0, 0, 'misc').setOrigin(0)
 
     // Configuración de la cámara para seguir al jugador
-    this.cameras.main.setBounds(0, -100, 0, 800)
+    this.cameras.main.setBounds(0, -10, 0, 800)
     this.cameras.main.startFollow(this.player, true, 0.08, 0.08)
+
+    // Crear y posicionar la imagen de las vidas
+    const lifeImage = this.add.image(20, 100, 'life').setOrigin(0)
+    lifeImage.setScrollFactor(0)
 
     // Keyboard events
     this.input.keyboard.on('keydown-P', () => {
